@@ -12,7 +12,37 @@ public class ABCBank {
      public int deposit;
      public int amount;
      public String branch;
-    
+     public int princilal;
+     public int rateOfInterest;
+     public int n;
+     public int loanInterest;
+     
+     
+	 public int getLoanInterest() {
+		return loanInterest;
+	}
+	public void setLoanInterest(int loanInterest) {
+		this.loanInterest = loanInterest;
+	}
+	public int getPrincilal() {
+		return princilal;
+	}
+	public void setPrincilal(int princilal) {
+		this.princilal = princilal;
+	}
+	public int getRateOfInterest() {
+		return rateOfInterest;
+	}
+	public void setRateOfInterest(int rateOfInterest) {
+		this.rateOfInterest = rateOfInterest;
+	}
+	public int getN() {
+		return n;
+	}
+	public void setN(int n) {
+		this.n = n;
+	}
+	
 	public String getBranch() {
 		return branch;
 	}
@@ -65,13 +95,8 @@ public class ABCBank {
 	public String toString() {
 		return "ABCBank [userName=" + userName + ", userPhoneNumber=" + userPhoneNumber + ", userAddress=" + userAddress
 				+ ", userAadharNumber=" + userAadharNumber + ", userAccountNumber=" + userAccountNumber + ", deposit="
-				+ deposit + ", amount=" + amount + ", branch=" + branch + "]";
+				+ deposit + ", amount=" + amount + ", branch=" + branch + ", princilal=" + princilal
+				+ ", rateOfInterest=" + rateOfInterest + ", n=" + n + ", loanInterest=" + loanInterest + "]";
 	}
 	
-	}
-	
-	
-	
-
-
-
+}
