@@ -1,6 +1,6 @@
 package com.chainsys.sql;
-
 public class LibraryDetails {
+	
      public LibraryDetails(){
     	 
      }
@@ -10,6 +10,22 @@ public class LibraryDetails {
      public String authorName;
      public int numberOfBooksTaken;
      public int libraryCardNumber;
+     public String todayDate;
+     public String category;
+     public String option;
+//     public int fine;
+	 public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public String getOption() {
+		return option;
+	}
+	public void setOption(String option) {
+		this.option = option;
+	}
 	public String getUserName() {
 		return userName;
 	}
@@ -43,16 +59,26 @@ public class LibraryDetails {
 	public int getLibraryCardNumber() {
 		return libraryCardNumber;
 	}
-	public void setLibraryCardNumber(int libraryCardNumber) {
-		this.libraryCardNumber = libraryCardNumber;
+	public void setLibraryCardNumber(int i) {
+		this.libraryCardNumber = i;
 	}
+	
+	
+	public String getTodayDate() {
+		return todayDate;
+	}
+	public void setTodayDate(String todayDate) {
+		this.todayDate = todayDate;
+	}
+	
 	@Override
 	public String toString() {
 		return "LibraryDetails [userName=" + userName + ", booksAvailable=" + booksAvailable + ", bookName=" + bookName
 				+ ", authorName=" + authorName + ", numberOfBooksTaken=" + numberOfBooksTaken + ", libraryCardNumber="
-				+ libraryCardNumber + "]";
+				+ libraryCardNumber + ", todayDate=" + todayDate + ", category=" + category + ", option=" + option
+				+ "]";
 	}
-     
-     
-     
+	
+	
+	
 }
