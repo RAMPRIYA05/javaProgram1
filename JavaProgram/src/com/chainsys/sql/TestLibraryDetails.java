@@ -63,7 +63,7 @@ public class TestLibraryDetails {
        	     TestLibraryDetails.fine();
        	     TestLibraryDetails.nextBook();
     		 break;
-    	 
+    	
     	 case "b":
     		 System.out.println("Name of the book:");
     		 String book=sc.next();
