@@ -14,6 +14,7 @@ public class LibraryDetails {
      public String role;
      public String purpose;
      
+     
 //     public int fine;
 	 public String getCategory() {
 		return category;
