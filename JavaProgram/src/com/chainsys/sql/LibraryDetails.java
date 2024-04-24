@@ -4,15 +4,16 @@ public class LibraryDetails {
      public LibraryDetails(){
     	 
      }
-     public String userName;
-     public int booksAvailable;
-     public String bookName;
-     public String authorName;
+    
      public int numberOfBooksTaken;
      public int libraryCardNumber;
      public String todayDate;
      public String category;
      public String option;
+     public char nextBook;
+     public String role;
+     public String purpose;
+     
 //     public int fine;
 	 public String getCategory() {
 		return category;
@@ -26,30 +27,8 @@ public class LibraryDetails {
 	public void setOption(String option) {
 		this.option = option;
 	}
-	public String getUserName() {
-		return userName;
-	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-	public int getBooksAvailable() {
-		return booksAvailable;
-	}
-	public void setBooksAvailable(int booksAvailable) {
-		this.booksAvailable = booksAvailable;
-	}
-	public String getBookName() {
-		return bookName;
-	}
-	public void setBookName(String bookName) {
-		this.bookName = bookName;
-	}
-	public String getAuthorName() {
-		return authorName;
-	}
-	public void setAuthorName(String authorName) {
-		this.authorName = authorName;
-	}
+	
+	
 	public int getNumberOfBooksTaken() {
 		return numberOfBooksTaken;
 	}
@@ -71,14 +50,32 @@ public class LibraryDetails {
 		this.todayDate = todayDate;
 	}
 	
-	@Override
-	public String toString() {
-		return "LibraryDetails [userName=" + userName + ", booksAvailable=" + booksAvailable + ", bookName=" + bookName
-				+ ", authorName=" + authorName + ", numberOfBooksTaken=" + numberOfBooksTaken + ", libraryCardNumber="
-				+ libraryCardNumber + ", todayDate=" + todayDate + ", category=" + category + ", option=" + option
-				+ "]";
+	public char getNextBook() {
+		return nextBook;
+	}
+	public void setNextBook(char nextBook) {
+		this.nextBook = nextBook;
 	}
 	
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+	
+	public String getPurpose() {
+		return purpose;
+	}
+	public void setPurpose(String purpose) {
+		this.purpose = purpose;
+	}
+	@Override
+	public String toString() {
+		return "LibraryDetails [numberOfBooksTaken=" + numberOfBooksTaken + ", libraryCardNumber=" + libraryCardNumber
+				+ ", todayDate=" + todayDate + ", category=" + category + ", option=" + option + ", nextBook="
+				+ nextBook + ", role=" + role + ", purpose=" + purpose + "]";
+	}
 	
 	
 }
