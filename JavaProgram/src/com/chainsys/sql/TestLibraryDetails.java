@@ -8,21 +8,8 @@ import java.text.ParseException;
 
 public class TestLibraryDetails {
 	public static  int bookCount;
-//	public static String libraryAssistant;
-//	 public static String role() 
-//	 {
-//		 Scanner sc=new Scanner(System.in);
-//		 System.out.println("Types of person in library:");
-//		 System.out.println("librarian\n libraryAssistant\n libraryMembership person\n 4.Manager\n 5.Other except non-membership person");
-//		 System.out.println("Enter your role:");
-//		 String role=sc.next();
-//		 
-//		if(role==libraryAssistant) 
-//		{
-//			 System.out.println("library Assistant check number of books,number returnrd,number of books taken and calculate the count");
-//		 }
-//		 return role;
-//	 }
+	private static String purpose;
+
      public static int libraryCardNumber()
      {
         Scanner sc=new Scanner(System.in);
@@ -30,19 +17,18 @@ public class TestLibraryDetails {
         System.out.println("Library CardNumber Of User:");
         String libraryCardNumber=sc.next();
    
-        Pattern p=Pattern.compile("^//d{5}$");
+        Pattern p=Pattern.compile("^[0-9]+$");
         Matcher m=p.matcher(libraryCardNumber);
         if(m.find())
         {	
-        	System.out.println("Error");
-    	    TestLibraryDetails.libraryCardNumber();
+        	System.out.println("Welcome to our Library");
+        	card=Integer.parseInt(libraryCardNumber);
         	
         }
         else
         {
-        	System.out.println("Welcome to our Library");
-        	
-        	card=Integer.parseInt(libraryCardNumber);
+        	System.out.println("Error");
+    	    TestLibraryDetails.libraryCardNumber();
     	    
         }
 	    return card;  
@@ -50,32 +36,51 @@ public class TestLibraryDetails {
      public static String purpose()
      {
     	 Scanner sc=new Scanner(System.in);
+    	
     	 System.out.println("Types of person in library:");
-    	 System.out.println(" a.Booktaken\n b.BookReturn\n c.Bookreaders inside a library");
+    	 System.out.println(" 1.Booktaken\n 2.BookReturn\n 3.Bookreaders inside a library");
     	 System.out.println("Choose anyone option:");
     	 String purpose=sc.next();
-    	 System.out.println("purpose:"+purpose);
+    	 sc.nextLine();
+    	 //System.out.println("purpose:"+purpose);
+    	 Pattern p=Pattern.compile("^[0-9]+$");
+         Matcher m=p.matcher(purpose);
+         if(m.find())
+         {
     	 switch(purpose)
     	 {
-    	 case "a":
+    	 case "1":
+    		
     		 TestLibraryDetails.category();
     		 TestLibraryDetails.noOfBooksTaken();
        	     TestLibraryDetails.fine();
        	     TestLibraryDetails.nextBook();
+       	     TestLibraryDetails.todayDate();
     		 break;
     	
-    	 case "b":
+    	 case "2":
     		 System.out.println("Name of the book:");
-    		 String book=sc.next();
+    		 String book=sc.nextLine();
     		 System.out.println("book:"+book);
-    		 System.out.println("Name of the category");
-    		 String category=sc.next();
-    		 System.out.println("Category"+category);
-    		 
-    		 
-    	 }
-		return purpose;	 
-    	 }
+    		 System.out.println("Name of the category:");
+    		 String category=sc.nextLine();
+    		 System.out.println("Category:"+category);
+    		 TestLibraryDetails.returnDate();
+    		 System.out.println("Book returned");
+    		 break;
+    		  //String date = TestLibraryDetails.returnDate();
+    		 //System.out.println(date);
+    	 
+    	 case "3":
+    		 TestLibraryDetails.category();
+    		 System.out.println("They take one book for reading inside the library");
+    		 System.out.println("They donot take books or return books"); 
+    		 break;
+    	 
+        }
+         }
+		 return purpose;	
+     }
      
      public static String category() 
      {
@@ -86,6 +91,7 @@ public class TestLibraryDetails {
     	 System.out.println("choose any one category:");
     	 String option=sc.next();
     	 System.out.println(option);
+    	
     	 switch(option)
     	 {
     		 case "a":
@@ -93,6 +99,8 @@ public class TestLibraryDetails {
     			 System.out.println("Enter an option:");
     			 int historicalFictionOption=sc.nextInt();
     			 System.out.println(historicalFictionOption);
+    			 if(historicalFictionOption>0 && historicalFictionOption<=3)
+    			 {
     			 if(historicalFictionOption==1)
     			 {
     				 String book1="Pachinko";
@@ -109,20 +117,28 @@ public class TestLibraryDetails {
     			      System.out.println("you have to wait or choose other book");
     			      TestLibraryDetails.category();
     			 }
-    			 else if(historicalFictionOption==3||historicalFictionOption==4)
+    			 else if(historicalFictionOption==3)
     			 {
     				 String book3="The Nightingale";
    				     System.out.println("Book Name"+book3); 
    				     bookCount=10;
  				     System.out.println("no of "+book3+" books available are: "+bookCount); 
     			 }
-    	         break;
+    	         
+    			 }
+    			 else {
+    				 System.out.println("Error");
+    			 }
+    			 break;
              case "b":
             	 System.out.println(" Fantasy:\n 1.Jade City\n 2.Tigana\n 3.The Night Circus");
             	 System.out.println("Enter an option:");
             	 int fantasy=sc.nextInt();
     			 System.out.println(fantasy);
-    			 if(fantasy==1) {
+    			 if(fantasy>0 && fantasy<=3)
+    			 {
+    			 if(fantasy==1) 
+    			 {
     				 String book1="Jade City";
     				 System.out.println("Book Name"+book1);
     				 bookCount=15;
@@ -143,12 +159,20 @@ public class TestLibraryDetails {
    				     bookCount=3;
  				     System.out.println("no of "+book3+" books available are: "+bookCount);
     			 }
+    			 
+    			 }
+    			 else
+    			 {
+    				 System.out.println("error");
+    			 }
     			 break; 
     	     case "c":
     	    	 System.out.println(" Mystery:\n 1.Gone Girl\n 2.The Girl with the Dragon\n");
     	    	 System.out.println("Enter an option:");
     	    	 int mystery=sc.nextInt();
     			 System.out.println(mystery);
+    			 if(mystery>0 && mystery<=2)
+    			 {
     			 if(mystery==1)
     			 {
     				 String book1="Gone Girl";
@@ -165,12 +189,20 @@ public class TestLibraryDetails {
    			         TestLibraryDetails.category();
    			         
     			 } 
+    			 
+    			 }
+    			 else
+    			 {
+    				 System.out.println("error");
+    			 }
     			 break;
     	     case "d":
     	    	 System.out.println("Comics:\n 1.The Sand Man\n 2.Watchmen\n");
     	    	 System.out.println("Enter an option:");
     	    	 int comics=sc.nextInt();
 			     System.out.println(comics);
+			     if(comics>0 && comics<=2)
+			     {
 			     if(comics==1)
 			     {
 			    	 String book1="The Sand Man";
@@ -186,11 +218,17 @@ public class TestLibraryDetails {
    			         System.out.println("you have to wait or choose other book");
    			         TestLibraryDetails.category();
    			      }
+			     
+			     }
+			     else
+			     {
+			    	 System.out.println("error");
+			     }
 			     break;
     	 }
 		return option;
     }
-        
+
      public static int noOfBooksTaken() 
      {
          Scanner sc=new Scanner(System.in);
@@ -264,6 +302,7 @@ public class TestLibraryDetails {
     	  Scanner sc=new Scanner(System.in);
     	  System.out.println("enter the today date(dd/mm/yyyy):");
     	  String todayDate=sc.next();
+    	 
     	  SimpleDateFormat formatting=new SimpleDateFormat("dd/mm/yyyy");
     	  try {
     	  
@@ -275,14 +314,25 @@ public class TestLibraryDetails {
     		  System.out.println("date format should be in (03/05/2024)");
     		  TestLibraryDetails.todayDate();
     	  }
+    	  
 		return todayDate;
     	 
+      }
+      public static String returnDate()
+      {
+    	  Date bookReturnDate=new Date();
+    	  SimpleDateFormat formatting=new SimpleDateFormat("dd MMMM yyyy");
+    	  String bookReturnDateString= formatting.format(bookReturnDate);
+    	  System.out.println("Book Return Date:"+bookReturnDateString);
+		  return bookReturnDateString;  
       }
       public static char nextBook()
       {
     	  Scanner sc=new Scanner(System.in);
     	  System.out.println("do you want any other books?(Y/N):");
     	  char nextBook=sc.next().charAt(0);
+    	  if(nextBook=='Y' || nextBook=='N')
+    	  {
     	  if(nextBook=='Y')
     	  {
     		  System.out.println("now you can select next book:");
@@ -296,34 +346,25 @@ public class TestLibraryDetails {
     	  {
     		  System.out.println("you can exit now");
     	  }
+    	  }
     	  else
     	  {
     		  System.out.println("please enter the correct input");
     		  TestLibraryDetails.nextBook();
     	  }
-		return nextBook;
-		
+    	  return nextBook;
     	  
       }
       
    public static void main(String[] args) {
       LibraryDetails libraryDetails=new LibraryDetails();
-      //libraryDetails.setRole(TestLibraryDetails.role());
+  
       libraryDetails.setLibraryCardNumber(TestLibraryDetails.libraryCardNumber());
       libraryDetails.setPurpose(TestLibraryDetails.purpose());
-      //libraryDetails.setCategory(TestLibraryDetails.category());
-      //libraryDetails.setNumberOfBooksTaken(TestLibraryDetails.noOfBooksTaken());
-      libraryDetails.setTodayDate(TestLibraryDetails.todayDate());
-     // TestLibraryDetails.fine();
-     // libraryDetails.setNextBook(TestLibraryDetails.nextBook());
       
-     // System.out.println("Role:"+libraryDetails.getRole());
       System.out.println("Library Card Number:"+libraryDetails.getLibraryCardNumber());
       System.out.println("Purpose:"+libraryDetails.getPurpose());
-      //System.out.println("category:"+libraryDetails.getCategory());
-      //System.out.println("No Of Books Taken:"+libraryDetails.getNumberOfBooksTaken());
-      System.out.println("today Date:"+libraryDetails.getTodayDate());
-      //System.out.println("next book:"+libraryDetails.getNextBook());
+      
       System.out.println("Thanks for using our library");
      
 }

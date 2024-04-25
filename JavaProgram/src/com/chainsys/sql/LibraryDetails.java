@@ -1,10 +1,10 @@
 package com.chainsys.sql;
 public class LibraryDetails {
 	
-     public LibraryDetails(){
+     public LibraryDetails()
+     {
     	 
      }
-    
      public int numberOfBooksTaken;
      public int libraryCardNumber;
      public String todayDate;
@@ -13,9 +13,10 @@ public class LibraryDetails {
      public char nextBook;
      public String role;
      public String purpose;
+     public String returnDate;
      
      
-//     public int fine;
+
 	 public String getCategory() {
 		return category;
 	}
@@ -71,12 +72,20 @@ public class LibraryDetails {
 	public void setPurpose(String purpose) {
 		this.purpose = purpose;
 	}
+	
+	public String getReturnDate() {
+		return returnDate;
+	}
+	public void setReturnDate(String returnDate) {
+		this.returnDate = returnDate;
+	}
 	@Override
 	public String toString() {
 		return "LibraryDetails [numberOfBooksTaken=" + numberOfBooksTaken + ", libraryCardNumber=" + libraryCardNumber
 				+ ", todayDate=" + todayDate + ", category=" + category + ", option=" + option + ", nextBook="
-				+ nextBook + ", role=" + role + ", purpose=" + purpose + "]";
+				+ nextBook + ", role=" + role + ", purpose=" + purpose + ", returnDate=" + returnDate + "]";
 	}
+	
 	
 	
 }
