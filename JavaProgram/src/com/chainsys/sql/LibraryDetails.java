@@ -5,19 +5,26 @@ public class LibraryDetails {
      {
     	 
      }
+     public String role;
      public int numberOfBooksTaken;
      public int libraryCardNumber;
      public String todayDate;
      public String category;
      public String option;
      public char nextBook;
-     public String role;
      public String purpose;
      public String returnDate;
+   
      
      
 
-	 public String getCategory() {
+	 public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+	public String getCategory() {
 		return category;
 	}
 	public void setCategory(String category) {
@@ -59,12 +66,7 @@ public class LibraryDetails {
 		this.nextBook = nextBook;
 	}
 	
-	public String getRole() {
-		return role;
-	}
-	public void setRole(String role) {
-		this.role = role;
-	}
+	
 	
 	public String getPurpose() {
 		return purpose;
@@ -76,15 +78,17 @@ public class LibraryDetails {
 	public String getReturnDate() {
 		return returnDate;
 	}
+	
 	public void setReturnDate(String returnDate) {
 		this.returnDate = returnDate;
 	}
 	@Override
 	public String toString() {
-		return "LibraryDetails [numberOfBooksTaken=" + numberOfBooksTaken + ", libraryCardNumber=" + libraryCardNumber
-				+ ", todayDate=" + todayDate + ", category=" + category + ", option=" + option + ", nextBook="
-				+ nextBook + ", role=" + role + ", purpose=" + purpose + ", returnDate=" + returnDate + "]";
+		return "LibraryDetails [role=" + role + ", numberOfBooksTaken=" + numberOfBooksTaken + ", libraryCardNumber="
+				+ libraryCardNumber + ", todayDate=" + todayDate + ", category=" + category + ", option=" + option
+				+ ", nextBook=" + nextBook + ", purpose=" + purpose + ", returnDate=" + returnDate + "]";
 	}
+	
 	
 	
 	
