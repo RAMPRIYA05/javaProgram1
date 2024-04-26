@@ -1,5 +1,6 @@
 package com.chainsys.sql;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -12,7 +13,9 @@ public class TestLibraryDetails {
 	public static int age;
 	public static int membershipPackage;
 	public static int generateLibraryCardNumber;
-	
+	public static int day;
+	static int fineAmount;
+    static int fine;
      public static String role()
      {
     	 Scanner sc=new Scanner(System.in);
@@ -20,7 +23,7 @@ public class TestLibraryDetails {
     	 System.out.println(" 1.membership\n 2.non-membership\n");
     	 System.out.println("User(1/2):");
     	 String user=sc.next();
-    	 Pattern p=Pattern.compile("^[1-2]+$");
+    	 Pattern p=Pattern.compile("^[1-2]$");
          Matcher m=p.matcher(user);
          if(m.find())
          {
@@ -37,23 +40,29 @@ public class TestLibraryDetails {
         		 System.out.println("if you want to take book to home,you should be a member of our library");
         		 System.out.println("are you willing to apply for membership?(Y/N):");
         		 char apply=sc.next().charAt(0);
-        		 System.out.println("Apply:"+apply);
-        		 
-        		 if(apply=='Y')
+        		 //System.out.println("Apply:"+apply);
+        		 if(apply=='y' || apply=='n' || apply=='N' || apply=='Y')
+        		 {
+
+        		 if(apply=='Y' || apply=='y')
         		 {
         			 System.out.println("we are happy because you are ready to apply for membership.");
         			 System.out.println("Now You have to signup:");
         			 System.out.println("We have different types of offers based on age.");
         			 System.out.println("Enter your age:");
         			 age=sc.nextInt();
-        			 System.out.println("Age:"+age);
-        			 if(age>0)
-        			 {
+        			 String ageString=Integer.toString(age);
+            		 Pattern p1=Pattern.compile("^[1-9][0-9]|100$");
+            	     Matcher m1=p1.matcher(ageString);
+            	     if(m1.find())
+            	     {
         			 if(age>=18 && age<=60)
         			 {
         			     System.out.println("we have use different type of membership package.");
         			     System.out.println("package option:1.one year=200 2.two year=350 3.three year=550 4.five year=900");
         			     membershipPackage=sc.nextInt();
+        			     if(membershipPackage==1||membershipPackage==2||membershipPackage==3||membershipPackage==4)
+        			     {
         			     if(membershipPackage==1)
         			     {
         				     System.out.println("You get one year membership card"); 
@@ -70,12 +79,16 @@ public class TestLibraryDetails {
         			     {
         			         System.out.println("you can get golden membership card.It is valid for for five years");	 
         			     }
+        			     }
+        			     
         			  }
-        			  else if(age>18 && age<60)
+        			  else if((age>10 && age<18) || age>60)
         			  {
         				 System.out.println("We give offers for minor and senoir citizen.");
         				 System.out.println("package option:1.one year=180 2.two year=330 3.three year=530 4.five year=870");
         				 membershipPackage=sc.nextInt();
+        				 if(membershipPackage==1||membershipPackage==2||membershipPackage==3||membershipPackage==4)
+        			     {
         				 if(membershipPackage==1)
             			 {
             				System.out.println("You get one year membership card"); 
@@ -93,6 +106,12 @@ public class TestLibraryDetails {
             			 {
             			     System.out.println("you get golden membership card.It is valid for for five years");	 
             			 }
+        			     }
+        				 else
+        				 {
+        					 System.out.println("error");
+        					 TestLibraryDetails.role();
+        				 }
         			  }
         			 }
         			 else
@@ -102,12 +121,18 @@ public class TestLibraryDetails {
         			 }
         			 TestLibraryDetails.generateLibraryCardNumber();
         		 }
-        		 else if(apply=='N')
+        		 else if(apply=='N' || apply=='n')
         	     {
         				System.out.println("You can only read books inside the library");  
         				System.out.println("***************");
         		 }
         		 }
+        		 else
+        	     {
+        			 System.out.println("Error..enter (y/Y/N/n)");
+        			 TestLibraryDetails.role();
+        			 }
+        			 }
         		 
         	 }
          else
@@ -142,7 +167,7 @@ public class TestLibraryDetails {
         	 String password1=sc.next();
         	 //System.out.println("Re-enter your Password:"+password1);
              System.out.println("Successfully signed up");
-             System.out.println("****************");
+             System.out.println("*************************");
              System.out.println("Log in");
    	         TestLibraryDetails.libraryCardNumber();
          }
@@ -193,7 +218,7 @@ public class TestLibraryDetails {
          {
    	       System.out.println("Correct password");
    	       System.out.println("Welcome to our Library");
-   	       System.out.println("********************");
+   	       System.out.println("*******************************");
    	       TestLibraryDetails.purpose();
          }
          else 
@@ -210,11 +235,11 @@ public class TestLibraryDetails {
     	
     	 System.out.println("Types of person in library:");
     	 System.out.println(" 1.Booktaken\n 2.BookReturn\n 3.Bookreaders inside a library");
-    	 System.out.println("Choose anyone option:");
+    	 System.out.println("Choose anyone option(1/2/3):");
     	 String purpose=sc.next();
     	 sc.nextLine();
     	 //System.out.println("purpose:"+purpose);
-    	 Pattern p=Pattern.compile("^[0-9]+$");
+    	 Pattern p=Pattern.compile("^[1-3]+$");
          Matcher m=p.matcher(purpose);
          if(m.find())
          {
@@ -225,8 +250,8 @@ public class TestLibraryDetails {
     		 TestLibraryDetails.category();
     		 TestLibraryDetails.noOfBooksTaken();
        	     TestLibraryDetails.fine();
-       	     TestLibraryDetails.nextBook();
        	     TestLibraryDetails.todayDate();
+       	     TestLibraryDetails.nextBook();
     		 break;
     	
     	 case "2":
@@ -251,6 +276,11 @@ public class TestLibraryDetails {
     	 
         }
          }
+         else
+         {
+              System.out.println("Error...choose an option(1/2/3)");
+              TestLibraryDetails.purpose();
+         }
 		 return purpose;	
      }
      
@@ -262,6 +292,10 @@ public class TestLibraryDetails {
     	 System.out.println(" a.Historical Fiction\n b.Fantasy\n c.Mystery\n d.Comics");
     	 System.out.println("choose any one category:");
     	 String option=sc.next();
+    	 Pattern p=Pattern.compile("^[a-d]$");
+         Matcher m=p.matcher(option);
+         if(m.find())
+         {
     	 System.out.println(option);
     	 switch(option)
     	 {
@@ -299,6 +333,7 @@ public class TestLibraryDetails {
     			 }
     			 else {
     				 System.out.println("Error");
+    				 TestLibraryDetails.category();
     			 }
     			 break;
              case "b":
@@ -335,6 +370,7 @@ public class TestLibraryDetails {
     			 else
     			 {
     				 System.out.println("error");
+    				 TestLibraryDetails.category();
     			 }
     			 break; 
     	     case "c":
@@ -365,6 +401,7 @@ public class TestLibraryDetails {
     			 else
     			 {
     				 System.out.println("error");
+    				 TestLibraryDetails.category();
     			 }
     			 break;
     	     case "d":
@@ -394,9 +431,16 @@ public class TestLibraryDetails {
 			     else
 			     {
 			    	 System.out.println("error");
+			    	 TestLibraryDetails.category();
 			     }
 			     break;
     	 }
+         }
+         else
+         {
+        	 System.out.println("error");
+        	 TestLibraryDetails.category();
+         }
 		return option;
     }
 
@@ -412,13 +456,12 @@ public class TestLibraryDetails {
          {	
         	 if(bookCount>noOfBooksTaken && noOfBooksTaken!=0)
         	 {
-        	  
      	       System.out.println(noOfBooksTaken);
     	 	   int remainingNoOfBooks=bookCount-noOfBooksTaken;
     	 	   System.out.println("Remaining number of books:"+remainingNoOfBooks);
-    	 	   System.out.println("****************");
-    	 	   System.out.println("when did you return the book?");
-    	 	   System.out.println("If You return the book within 15 days.Then no fine");
+    	 	   System.out.println("*******************************");
+    	 	   System.out.println("How many days after you return the book?");
+     	 	   System.out.println("If You return the book within 15 days.Then no fine");
         	   
         	 }
         	 else
@@ -442,7 +485,8 @@ public class TestLibraryDetails {
     	  Scanner sc=new Scanner(System.in);
     	  
     	  System.out.println("Please enter the days.It will show fine is applicable or not.");
-    	  int day=sc.nextInt();
+    	  day=sc.nextInt();
+    	  
     	  if(day>0) 
     	  {
     	  if(day<=15) {
@@ -451,16 +495,25 @@ public class TestLibraryDetails {
     	  else if(day>15 && day<=20)
     	  {
     		  System.out.println("You should pay fine rs.50");
+    		  fine=50;
+    		  System.out.println("fine"+fine);
     	  }
     	  else if(day>20 && day<=30)
     	  {
     		  System.out.println("You should pay fine rs.100");
+    		  fine=100;
+    		  System.out.println("fine"+fine);
     	  }
     	  else if(day>30)
     	  {
     		  System.out.println("You should pay fine rs.10 per day");
+    		  fine=10*day;
     	  }
-    	  
+    	       
+//    	       fineAmount=fine+fineAmount;
+//    	       System.out.println(fineAmount);
+    	  fineAmount=fine+fineAmount;
+    	  System.out.println("Total Fine"+fineAmount);
     	  }
     	  
     	  else 
@@ -471,44 +524,54 @@ public class TestLibraryDetails {
 		 
       }
       
-      public static String todayDate()
+      public static LocalDate todayDate()
       { 
-    	  Scanner sc=new Scanner(System.in);
-    	  System.out.println("enter the today date(dd/mm/yyyy):");
-    	  String todayDate=sc.next();
-    	 
-    	  SimpleDateFormat formatting=new SimpleDateFormat("dd/mm/yyyy");
-    	  try {
-    	  
-		  Date date=formatting.parse(todayDate);
-    	   String format = formatting.format(date);
-    	  }
-    	  catch(ParseException e) {
-    		  System.out.println("invalid date format");
-    		  System.out.println("date format should be in (03/05/2024)");
-    		  TestLibraryDetails.todayDate();
-    	  }
-    	  
-		return todayDate;
-    	 
+//    	  Scanner sc=new Scanner(System.in);
+//    	  System.out.println("enter the today date(dd/mm/yyyy):");
+//    	  String todayDate=sc.next();
+//    	 
+//    	  SimpleDateFormat formatting=new SimpleDateFormat("dd/mm/yyyy");
+//    	  try {
+//    	  
+//		  Date date=formatting.parse(todayDate);
+//    	   String format = formatting.format(date);
+//    	  }
+//    	  catch(ParseException e) {
+//    		  System.out.println("invalid date format");
+//    		  System.out.println("date format should be in (03/05/2024)");
+//    		  TestLibraryDetails.todayDate();
+//    	  }
+
+		  LocalDate today =  LocalDate.now();             
+    	  LocalDate returnDate= today.plusDays(day); 
+    	  System.out.println("Book taken date:"+today);
+    	  System.out.println("Book will return on: "+returnDate);
+		  return returnDate;
+		  
       }
-      public static String returnDate()
+      public static LocalDate returnDate()
       {
-    	  Date bookReturnDate=new Date();
-    	  SimpleDateFormat formatting=new SimpleDateFormat("dd MMMM yyyy");
-    	  String bookReturnDateString= formatting.format(bookReturnDate);
-    	  System.out.println("Book Return Date:"+bookReturnDateString);
-		  return bookReturnDateString;  
+    	  LocalDate bookReturnDate=LocalDate.now();
+    	  LocalDate bookTakenDate=bookReturnDate.minusDays(day);
+    	  System.out.println("Book Taken Date:"+bookTakenDate);
+    	  System.out.println("Book Return Date:"+bookReturnDate);
+		  return bookTakenDate;
+    	  
+//    	  Date bookReturnDate=new Date();
+//    	  SimpleDateFormat formatting=new SimpleDateFormat("dd MMMM yyyy");
+//    	  String bookReturnDateString= formatting.format(bookReturnDate);
+//    	  System.out.println("Book Return Date: "+bookReturnDateString);
+//		  return bookReturnDateString;  
       }
       public static char nextBook()
       {
     	  Scanner sc=new Scanner(System.in);
-    	  System.out.println("***************");
+    	  System.out.println("********************************");
     	  System.out.println("do you want any other books?(Y/N):");
     	  char nextBook=sc.next().charAt(0);
-    	  if(nextBook=='Y' || nextBook=='N')
+    	  if(nextBook=='Y' || nextBook=='y' || nextBook=='n' || nextBook=='N')
     	  {
-    	  if(nextBook=='Y')
+    	  if(nextBook=='Y' || nextBook=='y')
     	  {
     		  System.out.println("now you can select next book:");
 		      TestLibraryDetails.category();
@@ -516,10 +579,10 @@ public class TestLibraryDetails {
 		      TestLibraryDetails.fine();
 		      TestLibraryDetails.nextBook();   
     	  }
-    	  else if(nextBook=='N')
+    	  else if(nextBook=='N'|| nextBook=='n')
     	  {
     		  System.out.println("Thank you for visiting our library");
-    		  System.out.println("**************");
+    		  System.out.println("********************************");
     	  }
     	  }
     	  else
@@ -535,7 +598,9 @@ public class TestLibraryDetails {
       LibraryDetails libraryDetails=new LibraryDetails();
       libraryDetails.setRole(TestLibraryDetails.role());
       System.out.println("User:"+libraryDetails.getRole());
-      System.out.println("Thanks for using our library");
+//      System.out.println("Thanks for using our library");
+//      libraryDetails.setPurpose(TestLibraryDetails.purpose());
+//      System.out.println("Purpose: "+libraryDetails.getPurpose());
      
 }
 }
