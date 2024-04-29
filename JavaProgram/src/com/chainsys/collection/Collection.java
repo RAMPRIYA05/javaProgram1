@@ -1,5 +1,6 @@
 package com.chainsys.collection;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -163,7 +164,26 @@ public class Collection {
 			  System.out.println("vector size:"+vector.size());
 			  System.out.println("vector removeall:"+vector.removeAll(vector));
 			  
-			 
-		  
+			 HashMap map=new HashMap();
+			 map.clone();
+			 System.out.println("map clone"+map);
+			 map.entrySet(); 
+			 System.out.println("map entryset"+map);
+			 map.get(3);
+			 System.out.println("get map:"+map);
+			 System.out.println("size:"+map.size());
+			 System.out.println("entry set"+map.entrySet());
+		     System.out.println("map contains value"+map.containsValue(3));
+		     System.out.println("map tostring"+map.toString());
+		     System.out.println("map clone:"+map.clone());
+		     System.out.println("map values:"+map.values());
+		     
+		     map.put(1,10);
+		     System.out.println("map put"+map);
+		     map.get(20);
+		     System.out.println("map get"+map);
+		     
+		     map.values();
+		     System.out.println("map values"+map);
 	}
 }
