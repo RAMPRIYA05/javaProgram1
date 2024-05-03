@@ -1,7 +1,7 @@
 package com.chainsys.connection1;
 
 public class LibraryDetailsPojo {
- 
+	 
 	public String user;
     public int noOfBooksTaken;
     public int libraryCardNumber;
@@ -13,6 +13,7 @@ public class LibraryDetailsPojo {
     public char nextBook;
     public String purpose;
     public String returnDate;
+    
 	public String getUser() {
 		return user;
 	}

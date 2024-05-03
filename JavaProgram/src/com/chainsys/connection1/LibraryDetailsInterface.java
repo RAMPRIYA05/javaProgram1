@@ -1,5 +1,6 @@
 package com.chainsys.connection1;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 public interface LibraryDetailsInterface
@@ -17,5 +18,6 @@ public interface LibraryDetailsInterface
 		 public LocalDate returnDate();
 		 public char nextBookDetails();
 		 public void details();
+		 public void libraryLogin() throws SQLException;
 
 }

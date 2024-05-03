@@ -1,5 +1,8 @@
 package com.chainsys.connection1;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -22,6 +25,7 @@ public class LibraryDetailsImplementation implements LibraryDetailsInterface{
     static String user;
     static String bookName;
     static char nextBook;
+    static String password;
     static String option;
 	@Override
 	public String role() 
@@ -550,7 +554,7 @@ public class LibraryDetailsImplementation implements LibraryDetailsInterface{
 	}
 	@Override
 	public void details() {
-		//pojo.setRole(libraryDetails.role());
+		pojo.setUser(libraryDetails.role());
 		pojo.setUser(user);
 		pojo.setLibraryCardNumber(libraryCardNumber);
 		pojo.setPurpose(purpose);
@@ -559,12 +563,40 @@ public class LibraryDetailsImplementation implements LibraryDetailsInterface{
 		pojo.setNoOfBooksTaken(noOfBooksTaken);
 		pojo.setNextBook(nextBook);
 		System.out.println("Type of user:"+pojo.getUser());
-		//System.out.println("Type of user:"+pojo.getRole());
+		System.out.println("Type of user:"+pojo.getUser());
 		System.out.println("Library Card Number:"+pojo.getLibraryCardNumber());
 		System.out.println("Purpose:"+pojo.getPurpose());
 		System.out.println("Book Category:"+pojo.getBookCategory());
 		System.out.println("Book Name:"+pojo.getBookName());
 		System.out.println("No of Books Taken:"+pojo.getNoOfBooksTaken());
 		System.out.println("NextBook:"+pojo.getNextBook());	
+	}
+	public void libraryLogin() throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		Connection connection = JdbcConnection.getConnection();
+        System.out.println(connection);
+
+	
+        pojo.setUser(user);
+        pojo.setLibraryCardNumber(libraryCardNumber);
+        
+		pojo.setPassword(password);
+        pojo.setPurpose(purpose);
+        pojo.setBookCategory(bookCategory);
+        pojo.setBookName(bookName);
+        pojo.setNoOfBooksTaken(noOfBooksTaken);
+        String login="insert into library(user,libraryCardNumber,password,purpose,bookCategory,bookName,noOfBooksTaken)values(?,?,?,?,?,?,?)";
+        PreparedStatement prepareStatement=connection.prepareStatement(login);
+       
+        prepareStatement.setString(1,pojo.getUser());
+        prepareStatement.setInt(2,pojo.getLibraryCardNumber());
+        prepareStatement.setString(3,pojo.getPassword());
+        prepareStatement.setString(4,pojo.getPurpose());
+        prepareStatement.setString(5,pojo.getBookName());
+        prepareStatement.setString(6,pojo.getBookCategory());
+        prepareStatement.setInt(7,pojo.getNoOfBooksTaken());
+        int rows = prepareStatement.executeUpdate();
+        System.out.println(rows);
+		
 	}
 }
